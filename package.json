@@ -15,13 +15,13 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:tkww.cssVariables"
+		"onCommand:tkww.convertFile"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "tkww.cssVariables",
+				"command": "tkww.convertFile",
 				"title": "Convert to TKWW Union CSS Variables"
 			}
 		]
