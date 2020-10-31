@@ -32,6 +32,9 @@ export const activate = (context: vscode.ExtensionContext) => {
 			convertFile(parsedLines, dictionary);
 		});
 
+		// Ensure there is an empty line below values
+		utils.ensureEmptyLine(parsedLines);
+
 		// Convert the `ParsedLine` array back into a string.
 		const updatedText = parsedLines.map((parsedLine) => parsedLine.text).join('\n');
 

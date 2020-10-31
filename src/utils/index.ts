@@ -1,3 +1,4 @@
+export { default as ensureEmptyLine } from './ensureEmptyLine';
 export { default as match } from './match';
 export { default as moveCursor } from './moveCursor';
 export { default as organize } from './organize';

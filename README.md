@@ -13,7 +13,7 @@ This command will convert the following for the currently open file:
 * Import the new variables into the CSS/SCSS file.
 ---
 
-> More features are being worked on! Take a look at the roadmap below or suggest ideas on Slack at `#tkww-vscode-extension` or email tkww-vscode-extension@theknotww.com.
+> More features are being worked on! Take a look at the [roadmap](#Roadmap) below or suggest ideas on Slack at `#tkww-vscode-extension` or email tkww-vscode-extension@theknotww.com.
 
 ## Requirements
 * VSCode version `1.50.0` or later is required to use this extension.
@@ -48,7 +48,7 @@ Please report any issues on Slack at `#tkww-vscode-extension` or email tkww-vsco
 
 ## Roadmap
 * Add unit tests.
-* Add a line break after variable declaration statements.
+* Exit command if no changes are needed.
 * Validate against installed Union package to ensure that import statements are correct.
 * Validate against file types to only convert CSS or any other preprocessor styling language.
 * Create a command to convert all files within VSCode Workspace.
