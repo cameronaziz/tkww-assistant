@@ -1,65 +1,34 @@
-# tkww README
+# The Knot Worldwide Assistant VSCode Extension
 
-This is the README for your extension "tkww". After writing up a brief description, we recommend including the following sections.
+This is the code repository for the VSCode Extension that helps engineers convert CSS values into Union variables.
 
 ## Features
+Each command requires `⌘` + `⇧ Shift` + `P`
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+---
+#### `Convert to TKWW Union CSS Variables`
+This command will convert the following:
+* Any HEX color code into Union color variables.
+* Any spacing, expressed in pixels, into Union spacing variables.
+* Import the new variables into the CSS/SCSS file.
+---
+More to come! Let us know on Slack at `#tkww-vscode-extension` or tkww-vs-extension@theknotww.com.
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+None!
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+There are no known issues at this time. \
+Please report any issues on Slack at `#tkww-vscode-extension` or tkww-vs-extension@theknotww.com.
 
 ## Release Notes
 
 Users appreciate release notes as you update your extension.
 
-### 1.0.0
+### 0.0.1
 
-Initial release of ...
+Initial release of TKWW Assistant
 
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+## **Enjoy!**
