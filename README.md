@@ -15,7 +15,7 @@ This command will convert the following for the currently open file:
 * Import the new variables into the CSS/SCSS file.
 ---
 
-> More features are being worked on! Take a look at the [roadmap](#Roadmap) below or suggest ideas on Slack at `#tkww-vscode-extension` or email tkww-vscode-extension@theknotww.com.
+> More features are being worked on! Take a look at the [roadmap](#Roadmap) below or suggest ideas on Slack at `#vscode-extension` or email vscode-extension@theknotww.com.
 
 ## Requirements
 * VSCode version `1.50.0` or later is required to use this extension.
@@ -46,7 +46,7 @@ This command will convert the following for the currently open file:
 
 ## Known Issues
 There are no known issues at this time. \
-Please report any issues on Slack at `#tkww-vscode-extension` or email tkww-vscode-extension@theknotww.com.
+Please report any issues on Slack at `#vscode-extension` or email vscode-extension@theknotww.com.
 
 ## Roadmap
 * Add unit tests.
