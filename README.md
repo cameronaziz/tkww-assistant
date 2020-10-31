@@ -2,6 +2,8 @@
 
 This is the code repository for the VSCode extension that helps engineers convert CSS values into Union variables.
 
+![TKWW Assistant Convert](docs/TKWW%20Assistant%20-%20Convert.gif)
+
 ## Features
 To execute a command, press `⌘` + `⇧ Shift` + `P`. Once the VSCode Command Palette opens, type the command, as written in each section header.
 
@@ -56,7 +58,7 @@ Please report any issues on Slack at `#tkww-vscode-extension` or email tkww-vsco
 * Create a command to convert dashed variables to camel cased variables.
 
 ## Release Notes
-For details of each release, review the [changelog](CHANGELOG.md).
+For details of each release, review the [changelog](docs/CHANGELOG.md).
 
 ### 0.0.1
 Initial release of TKWW Assistant.
