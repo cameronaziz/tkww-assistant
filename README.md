@@ -5,7 +5,7 @@ This is the code repository for the VSCode extension that helps engineers conver
 ![TKWW Assistant Convert](docs/TKWW%20Assistant%20-%20Convert.gif)
 
 ## Features
-To execute a command, press `⌘` + `⇧ Shift` + `P`. Once the VSCode Command Palette opens, type the command, as written in each section header.
+To execute a command, press `⌘ Command` + `⇧ Shift` + `P`. Once the VSCode Command Palette opens, type the command, as written in each section header.
 
 ---
 #### `Convert to TKWW Union CSS Variables`
@@ -15,7 +15,7 @@ This command will convert the following for the currently open file:
 * Import the new variables into the CSS/SCSS file.
 ---
 
-> More features are being worked on! Take a look at the [roadmap](#Roadmap) below or suggest ideas on Slack at `#vscode-extension` or email vscode-extension@theknotww.com.
+> More features are being worked on! Take a look at the [roadmap](#Roadmap) below or suggest ideas on Slack at [`#vscode-extension`](https://theknotww.slack.com/archives/C01E4Q8T10R).
 
 ## Requirements
 * VSCode version `1.50.0` or later is required to use this extension.
@@ -35,7 +35,7 @@ This command will convert the following for the currently open file:
 ## Updating
 1. Open terminal, or another terminal emulator, and navigate to the locally cloned repository, downloaded during install. If you have deleted the repository, simply follow Installation steps.
 2. Ensure that you are the `master` branch by executing `git branch --show-current`.
-   * If not on the current branch, execute `git checkout master`.
+   * If `master` is not the current branch, execute `git checkout master`.
 3. Execute `git pull`.
 4. Execute `npm install`.
 5. Execute `vsce package` to build the package locally.
@@ -46,7 +46,7 @@ This command will convert the following for the currently open file:
 
 ## Known Issues
 There are no known issues at this time. \
-Please report any issues on Slack at `#vscode-extension` or email vscode-extension@theknotww.com.
+Please report any issues on Slack at [`#vscode-extension`](https://theknotww.slack.com/archives/C01E4Q8T10R).
 
 ## Roadmap
 * Add unit tests.
