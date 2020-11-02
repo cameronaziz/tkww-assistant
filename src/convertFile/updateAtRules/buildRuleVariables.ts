@@ -21,6 +21,7 @@ const buildRuleVariables = (data: Node[]): string | Node[] => {
   // Delete the variables from the node array and insert the parentheses node.
   const deleteCount = fromIndex - atKeywordIndex - 3;
   data.splice(atKeywordIndex + 2, deleteCount, parentheses);
+
   // Return the node array of the parentheses value.
   return currentVariables;
 };

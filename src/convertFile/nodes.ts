@@ -8,6 +8,11 @@ export const newLine = {
   value: '\n',
 };
 
+export const lineBreak = {
+  type: 'space',
+  value: '\n\n',
+};
+
 export const semicolon = {
   type: 'punctuation',
   value: ';',
@@ -18,7 +23,7 @@ export const comma = {
   value: ',',
 };
 
-export const atValue = {
+export const atKeyword = {
   type: 'atkeyword',
   value: 'value',
 };

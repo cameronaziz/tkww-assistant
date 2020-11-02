@@ -45,7 +45,6 @@ const config: Dictionary.Config = {
   astType: 'color_hex',
   pkg: 'tk-ui-colors',
   pkgSource: '/lib/variables.css',
-  // keyLead: '#',
   valueLead: 'var',
   isCaseInsensitive: true,
 };

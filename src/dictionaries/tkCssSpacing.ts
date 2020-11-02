@@ -25,12 +25,12 @@ const config: Dictionary.Config = {
   pkg: 'tk-css-spacing',
   pkgSource: '/lib/variables.css',
   nextIdentifier: 'px',
-  valueLead: 'varSp'
+  valueLead: 'varSp',
 };
 
 const tkCssSpacing: Dictionary.Entry = {
   config,
-  variables
+  variables,
 };
 
 export default tkCssSpacing;

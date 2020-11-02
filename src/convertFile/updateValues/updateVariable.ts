@@ -1,11 +1,10 @@
 import { Node } from 'scss-parser';
 
-import { isInputStreamPosition } from '../../typeGuards';
-import { buildEndPosition } from '../../utils';
-import findEntryVariable from './findEntryVariable';
+import { isInputStreamPosition } from '../typeGuards';
+import { buildEndPosition, findEntryVariable } from '../utils';
 import getDeleteCount from './getDeleteCount';
 
-const update = (dictionaryEntry: string, nodeArray: Node[], typeIndex: number): string | undefined => {
+const updateVariable = (dictionaryEntry: string, nodeArray: Node[], typeIndex: number): string | undefined => {
   const { start } = nodeArray[typeIndex];
   if (typeIndex > -1 && isInputStreamPosition(start)) {
     const variableName = findEntryVariable(dictionaryEntry, nodeArray[typeIndex]);
@@ -17,15 +16,15 @@ const update = (dictionaryEntry: string, nodeArray: Node[], typeIndex: number): 
         start,
         end: buildEndPosition(start, variableName)
       };
-      const config = {
-        index: typeIndex,
+      const info = {
+        typeIndex,
         nodeArray,
       };
-      nodeArray = nodeArray.splice(typeIndex, getDeleteCount(dictionaryEntry, config), newIdentifer);
+      nodeArray = nodeArray.splice(typeIndex, getDeleteCount(dictionaryEntry, info), newIdentifer);
 
       return variableName;
     }
   }
 };
 
-export default update;
+export default updateVariable;

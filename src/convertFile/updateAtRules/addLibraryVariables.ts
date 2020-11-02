@@ -36,7 +36,7 @@ const addLibraryVariables = (params: AddLibraryVariablesParameters) => {
     }
   });
 
-  // Add the space to the end
+  // Add the space to the end.
   if (currentVariableNodes[currentVariableNodes.length - 1].type !== 'space') {
     currentVariableNodes.push(nodes.space);
   }

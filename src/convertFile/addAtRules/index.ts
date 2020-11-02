@@ -1,20 +1,24 @@
 import dictionaries from '../../dictionaries';
 import { valueIsNodeArr } from '../typeGuards';
+import { getPackage } from '../utils';
 import { newLine } from '../nodes';
 import addAtValue from './addAtValue';
 
 const addAtRules = (data: Content.DataNode) => {
-  const { value } = data.node;
+  const { newVariables, node: { value } } = data;
   if (valueIsNodeArr(value)) {
-    for (const remainingLibrary in data.newVariables) {
+    // Iterate through libraries that had variables added.
+    for (const remainingLibrary in newVariables) {
+      // Get the Dictionary.Entry associated with the library.
       const dictionaryEntry = dictionaries[remainingLibrary];
-      const { config: { pkg, pkgSource }} = dictionaryEntry;
-      const packageSource = pkgSource || '';
-      const library = `@xo-union/${pkg}${packageSource}`;
+      // Get the package name.
+      const library = getPackage(dictionaryEntry);
+      // Add a new line to the start of the node array.
       value.unshift(newLine);
+      // Create the atrule and add to the start of the node array.
       const newAtRule = {
         type: 'atrule',
-        value: addAtValue(library, data.newVariables[remainingLibrary])
+        value: addAtValue(library, newVariables[remainingLibrary])
       };
       value.unshift(newAtRule);
     }

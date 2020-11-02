@@ -1,6 +1,8 @@
 import { Node, InputStreamPosition } from 'scss-parser';
 
 import dictionaries from '../dictionaries';
+import { getCase } from '../utils';
+import { valueIsString } from './typeGuards';
 
 export const getPackage = (entry: Dictionary.Entry) => {
   const { config: { pkg, pkgSource }} = entry;
@@ -25,15 +27,21 @@ export const getEntryForLibrary = (library: Node | undefined) => {
 };
 
 
-export const nextIdentifierPredicate = (node: Node, index: number, value: Node[]) => {
-  if (node.type === 'identifier') {
-    const previous = value[index - 1];
-    if (node.value === 'px' && previous.type !== 'space') {
+export const buildNextIdentifierPredicate = (nextIdentifier?: string) => {
+  return (node: Node, index: number, value: Node[]) => {
+    if (!nextIdentifier) {
       return true;
     }
-  }
-  return false;
+    if (node.type === 'identifier') {
+      const previous = value[index - 1];
+      if (node.value === nextIdentifier && previous.type !== 'space') {
+        return true;
+      }
+    }
+    return false;
+  };
 };
+
 
 export const buildEndPosition = (position: InputStreamPosition | undefined, variableName: string): InputStreamPosition | undefined=> {
   if (position) {
@@ -42,5 +50,18 @@ export const buildEndPosition = (position: InputStreamPosition | undefined, vari
       line: position.column,
       column: position.column + variableName.length,
     };
+  }
+};
+
+export const findEntryVariable = (dictionaryEntry: keyof Dictionary.Book, node: Node): string | undefined => {
+  const { variables, config } = dictionaries[dictionaryEntry];
+  const { value } = node;
+
+  if (valueIsString(value) && variables[getCase(value, config)]) {
+    const { valueLead, valueTail } = config;
+    const valueL = valueLead || '';
+    const valueT = valueTail || '';
+
+    return `${valueL}${variables[getCase(value, config)]}${valueT}`;
   }
 };
