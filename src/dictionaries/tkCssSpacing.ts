@@ -2,7 +2,7 @@ const variables: Dictionary.Variables = {
   '1': 'Down5',
   '2': 'Down4',
   '4': 'Down3',
-  '7': 'Down2',
+  '8': 'Down2',
   '12': 'Down1',
   '16': 'Base',
   '20': 'Up1',
@@ -20,15 +20,17 @@ const variables: Dictionary.Variables = {
 };
 
 const config: Dictionary.Config = {
+  name: 'tkCssSpacing',
+  astType: 'number',
   pkg: 'tk-css-spacing',
   pkgSource: '/lib/variables.css',
-  keyTail: 'px',
-  valueLead: 'varSp'
+  nextIdentifier: 'px',
+  valueLead: 'varSp',
 };
 
 const tkCssSpacing: Dictionary.Entry = {
   config,
-  variables
+  variables,
 };
 
 export default tkCssSpacing;

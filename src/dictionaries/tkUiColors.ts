@@ -41,16 +41,17 @@ const variables: Dictionary.Variables = {
 };
 
 const config: Dictionary.Config = {
+  name: 'tkUiColors',
+  astType: 'color_hex',
   pkg: 'tk-ui-colors',
   pkgSource: '/lib/variables.css',
-  keyLead: '#',
   valueLead: 'var',
   isCaseInsensitive: true,
 };
 
-const tkCssSpacing: Dictionary.Entry = {
+const tkUiColors: Dictionary.Entry = {
   config,
   variables
 };
 
-export default tkCssSpacing;
+export default tkUiColors;
