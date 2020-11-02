@@ -10,11 +10,15 @@ interface AddLibraryVariablesParameters {
 
 const addLibraryVariables = (params: AddLibraryVariablesParameters) => {
   const { currentVariableNodes, libraryVariables } = params;
-  let addSpaceBack = false;
+
   // If last node is a space, remove it, we will add back at the end.
   if (currentVariableNodes[currentVariableNodes.length - 1].type === 'space') {
-    addSpaceBack = true;
     currentVariableNodes.pop();
+  }
+
+  // Add a space to the front if doesn't exist.
+  if (currentVariableNodes[0].type !== 'space') {
+    currentVariableNodes.unshift(nodes.space);
   }
 
   // Iterate through the new library variables and add nodes.
@@ -32,8 +36,8 @@ const addLibraryVariables = (params: AddLibraryVariablesParameters) => {
     }
   });
 
-  // Add the space back.
-  if (addSpaceBack) {
+  // Add the space to the end
+  if (currentVariableNodes[currentVariableNodes.length - 1].type !== 'space') {
     currentVariableNodes.push(nodes.space);
   }
 };

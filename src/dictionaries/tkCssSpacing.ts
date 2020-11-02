@@ -2,7 +2,7 @@ const variables: Dictionary.Variables = {
   '1': 'Down5',
   '2': 'Down4',
   '4': 'Down3',
-  '7': 'Down2',
+  '8': 'Down2',
   '12': 'Down1',
   '16': 'Base',
   '20': 'Up1',
