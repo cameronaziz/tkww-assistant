@@ -8,18 +8,17 @@ export const getPackage = (entry: Dictionary.Entry) => {
   return `@xo-union/${pkg}${pkgSrc}`;
 };
 
-export const getEntryForLibrary = (library: string | Node[]) => {
-  if (!library) {
-    return;
-  }
+export const getEntryForLibrary = (library: Node | undefined) => {
   let foundEntry: Dictionary.Entry | undefined = undefined;
-  for (const entryName in dictionaries) {
-    const entry = dictionaries[entryName];
-    const { config: { pkg, pkgSource }} = entry;
-    const pkgSrc = pkgSource || '';
-    if (`@xo-union/${pkg}${pkgSrc}` === library) {
-      foundEntry = dictionaries[entryName];
-      break;
+  if (library) {
+    for (const entryName in dictionaries) {
+      const entry = dictionaries[entryName];
+      const libraryName = getPackage(entry);
+      const { value } = library;
+      if (libraryName === value) {
+        foundEntry = dictionaries[entryName];
+        break;
+      }
     }
   }
   return foundEntry;
