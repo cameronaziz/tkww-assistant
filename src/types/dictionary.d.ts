@@ -3,13 +3,16 @@ export interface Variables {
 }
 
 export interface Config {
+  name: string;
   pkg: string;
   pkgSource?: string;
+  nextIdentifier?: string;
   keyLead?: string;
   keyTail?: string;
   valueLead?: string;
   valueTail?: string;
   isCaseInsensitive?: boolean;
+  astType: string;
 }
 
 export interface Entry {
@@ -17,6 +20,8 @@ export interface Entry {
   config: Config;
 }
 
-export type Book = Entry[];
+export interface Book {
+  [library: string]: Entry
+}
 
 export as namespace Dictionary;

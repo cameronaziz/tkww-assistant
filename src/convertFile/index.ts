@@ -1,8 +1,11 @@
 import * as vscode from 'vscode';
+import * as scssAST from 'scss-parser';
 
-import dictionaries from '../dictionaries';
 import * as utils from '../utils';
-import applyDictionary from './applyDictionary';
+import addAtRules from './addAtRules';
+import ensureEmptyLine from './ensureEmptyLine';
+import updateAtRules from './updateAtRules';
+import updateValues from './updateValues';
 
 // Create `convertFile` subscription.
 const convertFile = vscode.commands.registerCommand('tkww.convertFile', () => {
@@ -15,27 +18,22 @@ const convertFile = vscode.commands.registerCommand('tkww.convertFile', () => {
 
   // Get text of file and convert to array.
   let text = activeTextEditor.document.getText();
-  const lines = text.split('\n');
 
-  // Convert lines into `ParsedLine` objects.
-  const parsedLines: Content.ParsedLine[] = lines.map((line) => ({
-    text: line,
-    isValue: line.includes('@value'),
-  }));
+  const node = scssAST.parse(text);
+  const data: Content.DataNode = {
+    newVariables: {},
+    node,
+  };
 
-  // Iterate through the dictionaries and convert the file each time.
-  dictionaries.forEach((dictionary) => {
-    applyDictionary(parsedLines, dictionary);
-  });
+  updateValues(data);
+  updateAtRules(data);
+  addAtRules(data);
+  ensureEmptyLine(data);
 
-  // Ensure there is an empty line below values
-  utils.ensureEmptyLine(parsedLines);
-
-  // Convert the `ParsedLine` array back into a string.
-  const updatedText = parsedLines.map((parsedLine) => parsedLine.text).join('\n');
+  const modifiedCSS = scssAST.stringify(data.node);
 
   // Update the text.
-  utils.updateText(updatedText, activeTextEditor);
+  utils.updateText(modifiedCSS, activeTextEditor);
   // Move the cursor to the top left of the editor.
   utils.moveCursor(activeTextEditor);
 });

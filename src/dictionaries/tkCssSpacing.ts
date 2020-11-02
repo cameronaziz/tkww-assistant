@@ -20,9 +20,11 @@ const variables: Dictionary.Variables = {
 };
 
 const config: Dictionary.Config = {
+  name: 'tkCssSpacing',
+  astType: 'number',
   pkg: 'tk-css-spacing',
   pkgSource: '/lib/variables.css',
-  keyTail: 'px',
+  nextIdentifier: 'px',
   valueLead: 'varSp'
 };
 
