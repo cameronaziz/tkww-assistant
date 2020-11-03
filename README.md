@@ -9,10 +9,20 @@ To execute a command, press `⌘ Command` + `⇧ Shift` + `P`. Once the VSCode C
 
 ---
 #### `TKWW: Convert File to Union Variables`
-This command will convert the following for the currently open file:
+This command will convert the current file following for the currently open file:
 * Any HEX color code into Union color variables.
 * Any spacing, expressed in pixels, into Union spacing variables.
 * Import the new variables into the CSS/SCSS file.
+---
+#### `TKWW: Convert Workspace to Union Variables`
+This command will convert all files within workspace for the following for the currently open file:
+* Any HEX color code into Union color variables.
+* Any spacing, expressed in pixels, into Union spacing variables.
+* Import the new variables into the CSS/SCSS file.
+---
+#### `TKWW: Toggle Convert File on Save`
+This command will toggle to convert the current file when the it is saved.
+
 ---
 
 > More features are being worked on! Take a look at the [roadmap](#Roadmap) below or suggest ideas on Slack at [`#vscode-extension`](https://theknotww.slack.com/archives/C01E4Q8T10R).
@@ -29,8 +39,8 @@ This command will convert the following for the currently open file:
 5. Execute `vsce package` to build the package locally.
 6. Execute `code --install-extension tkww-assistant-${VERSION_NUMBER}.vsix`.
    * `VERSION_NUMBER` is the current version number of this extension.
-   * Currently, it is `0.1.0`, but please check against `package.json`.
-   * The command is `code --install-extension tkww-assistant-0.1.0.vsix`.
+   * Currently, it is `0.2.0`, but please check against `package.json`.
+   * The command is `code --install-extension tkww-assistant-0.2.0.vsix`.
 
 ## Updating
 1. Open terminal, or another terminal emulator, and navigate to the locally cloned repository, downloaded during install. If you have deleted the repository, simply follow Installation steps.
@@ -41,8 +51,8 @@ This command will convert the following for the currently open file:
 5. Execute `vsce package` to build the package locally.
 6. Execute `code --install-extension tkww-assistant-${VERSION_NUMBER}.vsix`.
    * `VERSION_NUMBER` is the current version number of this extension.
-   * Currently, it is `0.1.0`, but please check against `package.json`.
-   * The command is `code --install-extension tkww-assistant-0.1.0.vsix`.
+   * Currently, it is `0.2.0`, but please check against `package.json`.
+   * The command is `code --install-extension tkww-assistant-0.2.0.vsix`.
 
 ## Known Issues
 There are no known issues at this time. \
@@ -59,6 +69,9 @@ Please report any issues on Slack at [`#vscode-extension`](https://theknotww.sla
 
 ## Release Notes
 For details of each release, review the [changelog](docs/CHANGELOG.md).
+
+### 0.2.0
+Add workspace commands
 
 ### 0.1.0
 Migrate application to use abstract syntax tree.

@@ -15,14 +15,35 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:tkww.convertFile"
+		"*"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
+		"configuration": {
+			"title": "TKWW Assistant",
+			"properties": {
+				"TKWW.convertFileOnSave": {
+					"type": "boolean",
+					"default": false,
+					"description": "Convert CSS, SASS, or SCSS file on save."
+				}
+			}
+		},
 		"commands": [
 			{
 				"command": "tkww.convertFile",
-				"title": "TKWW: Convert File to Union Variables"
+				"title": "Convert File to Union Variables",
+				"category": "TKWW"
+			},
+			{
+				"command": "tkww.convertWorkspace",
+				"title": "Convert Workspace to Union Variables",
+				"category": "TKWW"
+			},
+			{
+				"command": "tkww.toggleConvertFileOnSave",
+				"title": "Toggle Convert File on Save",
+				"category": "TKWW"
 			}
 		]
 	},
