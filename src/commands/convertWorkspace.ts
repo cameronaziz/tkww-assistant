@@ -1,12 +1,25 @@
 import * as vscode from 'vscode';
+import { posix } from 'path';
 import convertFile from '../convertFile';
 
 const convertWorkspace = vscode.commands.registerCommand('tkww.convertWorkspace', async () => {
-  // TODO: Find .gitIgnore and exclude
-  // const bufferData = await vscode.workspace.fs.readFile();
+  const { workspaceFolders } = vscode.workspace;
+
+  if (!workspaceFolders) {
+    vscode.window.showInformationMessage('No folder or workspace opened');
+    return 1;
+  }
 
 
-  const files = await vscode.workspace.findFiles('**/*.*');
+  const folderUri = workspaceFolders[0].uri;
+  const fileUri = folderUri.with({ path: posix.join(folderUri.path, '.gitignore') });
+
+  const readData = await vscode.workspace.fs.readFile(fileUri);
+  const data = Buffer.from(readData).toString('utf8');
+  const ignorePaths = data.split('\n');
+  const ignoreGlob = `{${ignorePaths.join(',')}}`;
+  const files = await vscode.workspace.findFiles('**/*.*', ignoreGlob);
+
   files.forEach(async (file) => {
     // Read the file
     const bufferData = await vscode.workspace.fs.readFile(file);
