@@ -63,7 +63,6 @@ Please report any issues on Slack at [`#vscode-extension`](https://theknotww.sla
 * Exit command if no changes are needed.
 * Validate against installed Union package to ensure that import statements are correct.
 * Validate against file types to only convert CSS or any other preprocessor styling language.
-* Create a command to convert all files within VSCode Workspace.
 * Create a command to remove unused Union variables that have been imported.
 * Create a command to convert dashed variables to camel cased variables.
 
