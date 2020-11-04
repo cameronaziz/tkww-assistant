@@ -37,9 +37,8 @@ const createCommand = (outputChannel: vscode.OutputChannel) => {
       // Move the cursor to the top left of the editor.
       moveCursor(activeTextEditor);
 
-      showInformationMessage('This file was modified.');
-
       // Log to output channel.
+      showInformationMessage('This file was modified.');
       const fileLocalName = accessors.getFileName(fileName, workspaceFolders);
       outputChannel.appendLine(`${fileLocalName} was modified.`);
     }
