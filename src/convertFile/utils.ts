@@ -1,7 +1,7 @@
 import { Node, InputStreamPosition } from 'scss-parser';
 
 import dictionaries from '../dictionaries';
-import { getCase } from '../utils';
+import { accessors } from '../utils';
 import { valueIsString } from './typeGuards';
 
 export const getPackage = (entry: Dictionary.Entry) => {
@@ -57,11 +57,11 @@ export const findEntryVariable = (dictionaryEntry: keyof Dictionary.Book, node: 
   const { variables, config } = dictionaries[dictionaryEntry];
   const { value } = node;
 
-  if (valueIsString(value) && variables[getCase(value, config)]) {
+  if (valueIsString(value) && variables[accessors.getCase(value, config)]) {
     const { valueLead, valueTail } = config;
     const valueL = valueLead || '';
     const valueT = valueTail || '';
 
-    return `${valueL}${variables[getCase(value, config)]}${valueT}`;
+    return `${valueL}${variables[accessors.getCase(value, config)]}${valueT}`;
   }
 };

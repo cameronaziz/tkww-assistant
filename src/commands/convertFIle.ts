@@ -1,33 +1,50 @@
 import * as vscode from 'vscode';
 
-import * as utils from '../utils';
+import { updateText, moveCursor, constants, accessors } from '../utils';
 import convertFile from '../convertFile';
 
-const supportedLanguageIds = [
-	'scss',
-	'css',
-	'sass',
-];
+const createCommand = (outputChannel: vscode.OutputChannel) => {
+  // Create `convertFile` command.
+  const command = vscode.commands.registerCommand('tkww.convertFile', () => {
+    const { activeTextEditor, showInformationMessage, showErrorMessage } = vscode.window;
+    const { workspaceFolders } = vscode.workspace;
 
-// Create `convertFile` subscription.
-const command = vscode.commands.registerCommand('tkww.convertFile', () => {
-  // Get the current open file in the text editor.
-  const { activeTextEditor } = vscode.window;
-  // If no text editor is open, exit.
-  if (!activeTextEditor || !supportedLanguageIds.includes(activeTextEditor.document.languageId)) {
-    return;
-  }
+    // If no text editor is open, exit.
+    if (!activeTextEditor) {
+      showErrorMessage('No file is open and selected.');
+      outputChannel.appendLine('`tkww.convertFile` failed to execute: No file is open and selected.');
+      return;
+    }
 
-  // Get text of file and convert to array.
-  let text = activeTextEditor.document.getText();
+    const { languageId, getText, fileName } = activeTextEditor.document;
 
-  // Convert text.
-  const modifiedCSS = convertFile(text);
+    // If the file extension is wrong, exit.
+    if (!constants.supportedLanguageExt.includes(languageId)) {
+      showErrorMessage('This file type is not supported.');
+      outputChannel.appendLine('`tkww.convertFile` failed to execute: This file type is not supported.');
+      return;
+    }
 
-  // Write the text in the file.
-  utils.updateText(modifiedCSS, activeTextEditor);
-  // Move the cursor to the top left of the editor.
-  utils.moveCursor(activeTextEditor);
-});
+    // Get text of file and convert to array.
+    let text = getText();
 
-export default command;
+    // Convert text.
+    const modifiedCSS = convertFile(text);
+
+    if (modifiedCSS !== text) {
+      // Write the text in the file.
+      updateText(modifiedCSS, activeTextEditor);
+      // Move the cursor to the top left of the editor.
+      moveCursor(activeTextEditor);
+
+      // Log to output channel.
+      showInformationMessage('This file was modified.');
+      const fileLocalName = accessors.getFileName(fileName, workspaceFolders);
+      outputChannel.appendLine(`${fileLocalName} was modified.`);
+    }
+  });
+
+  return command;
+};
+
+export default createCommand;

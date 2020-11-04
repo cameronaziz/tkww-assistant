@@ -1,40 +1,59 @@
 import * as vscode from 'vscode';
-import { posix } from 'path';
+
 import convertFile from '../convertFile';
+import { getGitignoreGlob, constants } from '../utils';
 
-const convertWorkspace = vscode.commands.registerCommand('tkww.convertWorkspace', async () => {
-  const { workspaceFolders } = vscode.workspace;
+const createCommand = (outputChannel: vscode.OutputChannel) => {
+  // Create `convertWorkspace` command.
+  const command = vscode.commands.registerCommand('tkww.convertWorkspace', async () => {
+    const { workspaceFolders, findFiles, fs } = vscode.workspace;
+    const { showErrorMessage } = vscode.window;
 
-  if (!workspaceFolders) {
-    vscode.window.showInformationMessage('No folder or workspace opened');
-    return 1;
-  }
+    // If no workspace is open, display message.
+    if (!workspaceFolders) {
+      showErrorMessage('No folder or workspace opened.');
+      outputChannel.appendLine('`tkww.convertWorkspace` failed to execute: No folder or workspace opened.');
+      return;
+    }
 
+    const workspaceFolder = workspaceFolders[0];
+    const workspacePath = workspaceFolder.uri.path;
 
-  const folderUri = workspaceFolders[0].uri;
-  const fileUri = folderUri.with({ path: posix.join(folderUri.path, '.gitignore') });
+    // Get .gitignore file to ignore all ignore all within it.
+    // TODO: Analyze all workspace folders for .gitignore.
+    const ignoreGlob = await getGitignoreGlob(workspaceFolder, outputChannel);
 
-  const readData = await vscode.workspace.fs.readFile(fileUri);
-  const data = Buffer.from(readData).toString('utf8');
-  const ignorePaths = data.split('\n');
-  const ignoreGlob = `{${ignorePaths.join(',')}}`;
-  const files = await vscode.workspace.findFiles('**/*.*', ignoreGlob);
+    // Get all files that are not in .gitignore and supported file extensions.
+    // TODO: Check the file Language Mode.
+    const files = await findFiles(`**/*.${constants.supportedLanguageExtGlob}`, ignoreGlob);
 
-  files.forEach(async (file) => {
-    // Read the file
-    const bufferData = await vscode.workspace.fs.readFile(file);
+    files.forEach(async (file) => {
+      // Read the file
+      const bufferData = await fs.readFile(file);
 
-    // Convert the Buffer into text.
-    const text = Buffer.from(bufferData).toString('utf8');
+      // Convert the Buffer into text.
+      const text = Buffer.from(bufferData).toString('utf8');
 
-    // Convert the text.
-    const modifiedCSS = convertFile(text);
-    // Convert the text into Buffer.
-    const writeData = Buffer.from(modifiedCSS, 'utf8');
+      // Convert the text.
+      const modifiedCSS = convertFile(text);
 
-    // Write the file
-    vscode.workspace.fs.writeFile(file, writeData);
+      // Check if it has changed.
+      if (modifiedCSS !== text) {
+        // Convert the text into Buffer.
+        const writeData = Buffer.from(modifiedCSS, 'utf8');
+
+        // Write the file
+        fs.writeFile(file, writeData);
+
+        // Log to output channel.
+        const fileName = file.path.replace(workspacePath, '');
+        const logMessage = `${fileName} was modified and saved.`;
+        outputChannel.appendLine(logMessage);
+      }
+    });
   });
-});
 
-export default convertWorkspace;
+  return command;
+};
+
+export default createCommand;

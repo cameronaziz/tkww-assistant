@@ -2,7 +2,7 @@
 	"name": "tkww-assistant",
 	"displayName": "TKWW Assistant",
 	"description": "The Knot Worldwide Assistant VSCode Extension",
-	"version": "0.1.0",
+	"version": "0.2.1",
 	"publisher": "TKWW-Engineering-Team",
 	"repository": {
 		"type": "git",
