@@ -34,6 +34,7 @@ const createCommand = (outputChannel: vscode.OutputChannel) => {
     if (modifiedCSS !== text) {
       // Write the text in the file.
       updateText(modifiedCSS, activeTextEditor);
+
       // Move the cursor to the top left of the editor.
       moveCursor(activeTextEditor);
 
