@@ -2,18 +2,23 @@ import * as vscode from 'vscode';
 
 import { startup } from './utils';
 import * as commands from './commands';
-import registerConvertFileOnSave from  './registerConvertFileOnSave';
+import * as register from  './register';
 
 export const activate = (context: vscode.ExtensionContext) => {
-	// Log startup information.
-	startup();
+	const outputChannel = register.outputChannel();
 
-	registerConvertFileOnSave();
+	// Log startup information.
+	startup(outputChannel);
+
+	// Register commands on events.
+	register.convertFileOnSave();
 
 	// Add commands to context.
-	context.subscriptions.push(commands.convertFile);
-	context.subscriptions.push(commands.convertWorkspace);
-	context.subscriptions.push(commands.toggleConvertFileOnSave);
+	context.subscriptions.push(commands.convertFile(outputChannel));
+	context.subscriptions.push(commands.convertWorkspace(outputChannel));
+	context.subscriptions.push(commands.toggleConvertFileOnSave(outputChannel));
 };
 
-export function deactivate() {}
+export const deactivate = () => {
+	// Methods executed when extension is deactivated.
+};

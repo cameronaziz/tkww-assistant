@@ -2,6 +2,14 @@
 
 All notable changes to the `tkww-assistant` extension will be documented in this file.
 
+## [0.2.1] - 2020-11-03
+### Added
+- Added logging to output channel `TKWW`.
+- Added informational messages when commands complete.
+- Added error messages when commands fail.
+### Changes
+- Reorganized some files.
+
 ## [0.2.0] - 2020-11-02
 ### Added
 - Added setting to toggle convert file on save.

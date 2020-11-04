@@ -39,8 +39,8 @@ This command will toggle to convert the current file when the it is saved.
 5. Execute `vsce package` to build the package locally.
 6. Execute `code --install-extension tkww-assistant-${VERSION_NUMBER}.vsix`.
    * `VERSION_NUMBER` is the current version number of this extension.
-   * Currently, it is `0.2.0`, but please check against `package.json`.
-   * The command is `code --install-extension tkww-assistant-0.2.0.vsix`.
+   * Currently, it is `0.2.1`, but please check against `package.json`.
+   * The command is `code --install-extension tkww-assistant-0.2.1.vsix`.
 
 ## Updating
 1. Open terminal, or another terminal emulator, and navigate to the locally cloned repository, downloaded during install. If you have deleted the repository, simply follow Installation steps.
@@ -51,8 +51,8 @@ This command will toggle to convert the current file when the it is saved.
 5. Execute `vsce package` to build the package locally.
 6. Execute `code --install-extension tkww-assistant-${VERSION_NUMBER}.vsix`.
    * `VERSION_NUMBER` is the current version number of this extension.
-   * Currently, it is `0.2.0`, but please check against `package.json`.
-   * The command is `code --install-extension tkww-assistant-0.2.0.vsix`.
+   * Currently, it is `0.2.1`, but please check against `package.json`.
+   * The command is `code --install-extension tkww-assistant-0.2.1.vsix`.
 
 ## Known Issues
 There are no known issues at this time. \
@@ -70,8 +70,11 @@ Please report any issues on Slack at [`#vscode-extension`](https://theknotww.sla
 ## Release Notes
 For details of each release, review the [changelog](docs/CHANGELOG.md).
 
+### 0.2.1
+Add logging.
+
 ### 0.2.0
-Add workspace commands
+Add workspace commands.
 
 ### 0.1.0
 Migrate application to use abstract syntax tree.
