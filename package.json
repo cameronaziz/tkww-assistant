@@ -71,6 +71,7 @@
 		"vscode-test": "^1.4.0"
 	},
 	"dependencies": {
+		"query-ast": "^1.0.3",
 		"scss-parser": "^1.0.4"
 	}
 }
